@@ -10,7 +10,7 @@ const Home = () => {
       {isAuthenticated ? (
         <>
           <p>Kindly click the link below to schedule meeting.</p>
-          <Link href="/dashboard">Schedule Meeting</Link>
+          <Link href="/dashboard">Dashboard</Link>
         </>
       ) : (
         <>
