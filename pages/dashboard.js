@@ -1,26 +1,23 @@
 import { Layout, ProtectedRoute, Calendar } from "../components";
-import { getCalendarData } from "../lib";
+import { getCalendarData, getEvents } from "../lib";
 
-const Dashboard = ({ calendarData }) => {
+const Dashboard = (props) => {
   return (
     <Layout>
       <h1>Calendar</h1>
       <p>Navigate to schedule meeting page by clicking on date...</p>
-      <Calendar
-        month={calendarData.month}
-        year={calendarData.year}
-        weekDays={calendarData.weekDays}
-        dates={calendarData.dates}
-      />
+      <Calendar {...props} />
     </Layout>
   );
 };
 
 export const getStaticProps = async () => {
   const calendarData = getCalendarData();
+  const events = getEvents();
   return {
     props: {
       calendarData,
+      events,
     },
   };
 };

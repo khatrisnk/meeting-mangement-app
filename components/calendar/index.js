@@ -1,6 +1,8 @@
+import Link from "next/link";
 import styles from "./calendar.module.css";
 
-const Calendar = ({ month, year, weekDays, dates }) => {
+const Calendar = ({ calendarData, events }) => {
+  const { month, year, weekDays, dates } = calendarData;
   return (
     <div className={styles.calendar}>
       <div className={styles.month}>
@@ -19,10 +21,12 @@ const Calendar = ({ month, year, weekDays, dates }) => {
         {dates.map((date, index) => {
           const isSatorSun = index % 7 === 0 || index % 7 === 6;
           return (
-            <button className={`${styles.day} ${isSatorSun && styles.weekend}`} key={date.id}>
-              <div>{date.date}</div>
-              <div className={styles.dot}></div>
-            </button>
+            <Link href={`/schedule-meeting/${date.id}`} key={date.id}>
+              <div className={`${styles.day} ${isSatorSun && styles.weekend}`}>
+                <div>{date.date}</div>
+                {events[date.id] && <div className={styles.dot}></div>}
+              </div>
+            </Link>
           );
         })}
       </div>

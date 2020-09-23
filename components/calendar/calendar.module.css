@@ -24,9 +24,6 @@
 }
 
 .day {
-  background: transparent;
-  border: none;
-  box-shadow: none;
   padding: 20px 28px;
   text-align: center;
   cursor: pointer;
