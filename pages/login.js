@@ -1,17 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Layout } from "../components";
 import { useFormFields } from "../utils/custome-hooks";
 import { AuthContext } from "../contexts/auth";
 import Router, { useRouter } from "next/router";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, isAuthenticated } = useContext(AuthContext);
   const [error, setError] = useState("");
   const { formFields, createChangeHandler } = useFormFields({
     email: "",
     password: "",
   });
   const router = useRouter();
+
+  useEffect(() => {
+    isAuthenticated && router.push("/dashboard");
+  }, [isAuthenticated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

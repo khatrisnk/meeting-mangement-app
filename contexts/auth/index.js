@@ -13,9 +13,9 @@ const AuthProvider = ({ children }) => {
     setAuthState(!!isAuthenticated);
   }, [])
 
-  useEffect(() => {
-    authState && router.push('/dashboard')
-  }, [authState])
+  // useEffect(() => {
+  //   authState && router.push('/dashboard')
+  // }, [authState])
   
   const login = async (email, password) => {
     const res = await postData("/api/login", { email, password });

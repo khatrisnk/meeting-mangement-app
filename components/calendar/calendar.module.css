@@ -1,0 +1,45 @@
+.calendar {
+  width: 100%;
+  border: 1px solid #EAEAEA;
+}
+
+.month {
+  padding: 16px 28px;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.gridcontainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.weekday {
+  padding: 8px 28px;
+}
+
+.day {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 20px 28px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekend {
+  background-color: #EAEAEA;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: blue;
+  margin: 10px auto auto;
+  border-radius: 50%;
+}
