@@ -1,3 +1,17 @@
+/**
+ * 
+ * 
+ * 
+ * This file is no longer used
+ * 
+ * I created this in confusion to have dynamic path from event id
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 import { useState } from "react";
 import { getAllDatesIds, getEventData } from "../../lib";
 import { Layout } from "../../components";
