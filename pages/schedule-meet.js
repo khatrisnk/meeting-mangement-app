@@ -1,24 +1,22 @@
 import { useState } from "react";
-import { getAllDatesIds, getEventData } from "../../lib";
-import { Layout } from "../../components";
-import { useFormFields } from "../../utils/custome-hooks";
-import { postData } from '../../utils';
+import { Layout } from "../components";
+import { useFormFields } from "../utils/custome-hooks";
+import { postData } from '../utils';
 import { useRouter } from 'next/router';
 
-const ScheduleMeeting = ({ eventData, eventId }) => {
+const ScheduleMeeting = () => {
   const [error, setError] = useState("");
   const { formFields, createChangeHandler } = useFormFields({
-    date: eventData.date,
-    name: eventData.name,
-    description: eventData.description,
-    attendees: eventData.attendees,
+    date: "",
+    name: "",
+    description: "",
+    attendees: "",
   });
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await postData("/api/event", {
-      eventId,
       date: formFields.date,
       name: formFields.name,
       description: formFields.description,
@@ -34,7 +32,7 @@ const ScheduleMeeting = ({ eventData, eventId }) => {
 
   return (
     <Layout>
-      <h1>{eventData.name ? 'Edit' : 'Create'} Event</h1>
+      <h1>Create Event</h1>
       {error && <p className="global-error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -81,29 +79,10 @@ const ScheduleMeeting = ({ eventData, eventId }) => {
             onChange={createChangeHandler("attendees")}
           />
         </div>
-        <input type="submit" value={`${ eventData.name ? 'Edit' : 'Create' } Event`}></input>
-        {/* <button>{eventData.name ? 'Edit' : 'Create'} Event</button> */}
+        <input type="submit" value={`Create Event`}></input>
       </form>
     </Layout>
   );
-};
-
-export const getStaticProps = async ({ params }) => {
-  const eventData = getEventData(params.id);
-  return {
-    props: {
-      eventData,
-      eventId: params.id
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const paths = getAllDatesIds();
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 export default ScheduleMeeting;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./calendar.module.css";
 
 const Calendar = ({ calendarData, events }) => {
-  const { month, year, weekDays, dates } = calendarData;
+  const { month, monthNumber, year, weekDays, dates } = calendarData;
   return (
     <div className={styles.calendar}>
       <div className={styles.month}>
@@ -24,7 +24,7 @@ const Calendar = ({ calendarData, events }) => {
             <Link href={`/schedule-meeting/${date.id}`} key={date.id}>
               <div className={`${styles.day} ${isSatorSun && styles.weekend}`}>
                 <div>{date.date}</div>
-                {events[date.id] && <div className={styles.dot}></div>}
+                {events[`${year}-${monthNumber}-${date.date}`] && <div className={styles.dot}></div>}
               </div>
             </Link>
           );

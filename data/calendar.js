@@ -1,5 +1,6 @@
 export const calendarData = {
   month: "September",
+  monthNumber: "09",
   year: 2020,
   weekDays: ["Sun", "Mon", "Tue", "wed", "Thu", "Fri", "Sat"],
   dates: [
