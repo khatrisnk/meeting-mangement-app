@@ -51,3 +51,11 @@ form > div {
 form label, form input {
   display: block;
 }
+
+label {
+  font-weight: bold;
+}
+
+span {
+  word-wrap: break-word;
+}

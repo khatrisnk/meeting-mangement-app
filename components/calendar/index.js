@@ -25,10 +25,9 @@ const Calendar = ({ calendarData, events, onClick, onDoubleClick }) => {
         {dates.map((date, index) => {
           const isSatorSun = index % 7 === 0 || index % 7 === 6;
           return (
-            <div
+            <button
               className={`${styles.day} ${isSatorSun && styles.weekend}`}
-              tabIndex="0"
-              onClick={handleClick}
+              onClick={(evt) => handleClick({ evt, date: date.date })}
               onDoubleClick={(evt) => handleDoubleClick({ evt, date: date.date })}
               key={date.id}
             >
@@ -36,7 +35,7 @@ const Calendar = ({ calendarData, events, onClick, onDoubleClick }) => {
               {events[`${year}-${monthNumber}-${date.date}`] && (
                 <div className={styles.dot}></div>
               )}
-            </div>
+            </button>
           );
         })}
       </div>
