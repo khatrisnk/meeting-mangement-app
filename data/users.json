@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "email": "test_email1@oracle.com",
+      "pwd": "Test@123"
+    },
+    {
+      "email": "test_email2@oracle.com",
+      "pwd": "Test@123"
+    },
+    {
+      "email": "test_email3@oracle.com",
+      "pwd": "Test@123"
+    },
+    {
+      "email": "test_email4@oracle.com",
+      "pwd": "Test@123"
+    }
+  ]
+}
