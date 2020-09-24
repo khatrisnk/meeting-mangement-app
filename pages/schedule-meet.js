@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Layout } from "../components";
+import { Layout, ProtectedRoute } from "../components";
 import { useFormFields } from "../utils/custome-hooks";
 import { postData } from '../utils';
 import { useRouter } from 'next/router';
 import { getCalendarData, getEvents } from "../lib";
 
 const ScheduleMeeting = (props) => {
-  const { calendarData: { monthNumber, year }, events } = props;
+  const { calendarData: { year }, events } = props;
   const [error, setError] = useState("");
   const { formFields, createChangeHandler, updateFormFields } = useFormFields({
     date: "",
@@ -17,10 +17,10 @@ const ScheduleMeeting = (props) => {
   const router = useRouter();
 
   useEffect(() => {
-    const eventId = `${year}-${monthNumber}-${router.query.date}`;
+    const eventId = `${year}-${router.query.month}-${router.query.date}`;
     const eventData = events[eventId];
     updateFormFields(eventData);
-  }, [router.query.date]);
+  }, [router.query.date, router.query.month]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const ScheduleMeeting = (props) => {
 
   return (
     <Layout>
-      <h1>{formFields.name ? 'Edit' : 'Create'} Event</h1>
+      <h1>{router.query.date? 'Edit' : 'Create'} Event</h1>
       {error && <p className="global-error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -87,7 +87,7 @@ const ScheduleMeeting = (props) => {
             onChange={createChangeHandler("attendees")}
           />
         </div>
-        <input type="submit" value={`${formFields.name ? 'Edit' : 'Create'} Event`}></input>
+        <input type="submit" value={`${router.query.date ? 'Edit' : 'Create'} Event`}></input>
       </form>
     </Layout>
   );
@@ -105,4 +105,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default ScheduleMeeting;
+export default ProtectedRoute(ScheduleMeeting);

@@ -5,13 +5,13 @@ import { getCalendarData, getEvents } from "../lib";
 import { useRouter } from 'next/router';
 
 const Dashboard = (props) => {
-  const { calendarData: { monthNumber, year }, events } = props;
+  const { calendarData: { year }, events } = props;
   const [eventData, setEventData] = useState(null);
   const [modal, setModal] = useState(false);
   const router = useRouter();
 
   const singleClick = (params) => {
-    const eventId = `${year}-${monthNumber}-${params.date}`;
+    const eventId = `${year}-${params.month}-${params.date}`;
     const eventData = events[eventId];
     setEventData(eventData);
     if (eventData) {
@@ -24,7 +24,11 @@ const Dashboard = (props) => {
   }
 
   const doubleClick = (params) => {
-    router.push(`/schedule-meet?date=${params.date}`)
+    const eventId = `${year}-${params.month}-${params.date}`;
+    const eventData = events[eventId];
+    if (eventData) {
+      router.push(`/schedule-meet?date=${params.date}&month=${params.month}`);
+    }
   }
 
   return (

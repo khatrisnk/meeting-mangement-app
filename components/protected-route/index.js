@@ -10,8 +10,6 @@ const ProtectRoute = (Component) => {
     useEffect(() => {
       if (!isAuthenticated) {
         router.push("/login");
-      } else {
-        router.push("/dashboard");
       }
     }, [isAuthenticated]);
 
