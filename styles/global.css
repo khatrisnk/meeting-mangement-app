@@ -35,9 +35,16 @@ p {
 }
 
 form {
-  width: 100%;
+  width: 400px;
   border: 1px solid #EAEAEA;
   padding: 3rem;
+  box-shadow: 1px 4px 8px black;
+}
+
+@media(max-width: 400px) {
+  form {
+    width: 100%;
+  }
 }
 
 .global-error {
@@ -50,6 +57,18 @@ form > div {
 
 form label, form input {
   display: block;
+  width: 100%;
+}
+
+form input {
+  padding: 8px;
+}
+
+form button, form input[type='submit'] {
+  background-color: blue;
+  color: white;
+  padding: 8px 16px;
+  width: auto;
 }
 
 label {
